@@ -7,22 +7,29 @@ while True:
         def add_or_update_contact(name,number):
             try:
                 print("\nTask Name Should Be Unique For Adding New Task \n For Updating Task Name Must Need To Be Same.")
-                contact_book[name] = number
+                contact_book[name] = int(number)
+                return
             except Exception:
                 print("\nERROR OCCUR: ",Exception)
                 return     
+        name = str(input("Enter Contact Name: "))
+        number = input("Enter Your Number")
+        add_or_update_contact(name,number)
 
     elif user_input == 2:
         def delete_contact(name):
             contact_book.pop(name)
+            return
+        name = str(input("Enter Contact Name: "))
+        delete_contact(name)
             
     elif user_input == 3:
         def search_contact(name):
             print(f"Name {name}: {contact_book[name]}")
+            return
+        name = str(input("Enter Contact Name: "))
+        search_contact(name)
 
-        add_or_update_contact("hi",123)
-        search_contact("hi")
-        print(contact_book)
     
     elif user_input == 4:
         print("\nTHANK YOU FOR USING")
