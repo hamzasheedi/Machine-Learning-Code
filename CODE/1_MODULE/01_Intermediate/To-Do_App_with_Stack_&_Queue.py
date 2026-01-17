@@ -36,6 +36,20 @@ while True:
             print("\n Your First Added Task Have Been Completed and Removed From Task List")
         complete_first_task()
     
+    # if user input is 4 (For Remove Task)
+
+    elif user_input == 4:
+        def remove_task(task_name):
+            if task_name in task:
+                task.remove("task_name")
+                return
+            else:
+                print("task not present")
+        task_name = input("\n Enter Task Name: ")
+        remove_task(task_name)
+    
+
+    
 
 
 
