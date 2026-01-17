@@ -35,6 +35,14 @@ def show_tasks():
         print("\nYour Tasks:")
         for i, task in enumerate(tasks, start=1):
             print(f"{i}. {task}")
+        
+def clear_all_tasks():
+    if tasks:
+        tasks.clear()
+    else:
+        print("Task List Already Empty")
+
+
 
 while True:
     print("""
@@ -45,6 +53,7 @@ Choose an option:
 4. Remove Specific Task
 5. Show Tasks
 6. Exit
+7. Clear All Task
 """)
 
     try:
@@ -55,7 +64,10 @@ Choose an option:
 
     if user_input == 1:
         task_name = input("Enter task name: ")
-        add_task(task_name)
+        if task_name.strip() == "":
+            print("Empty Task Is Not Allowed")
+        else:
+            add_task(task_name)
 
     elif user_input == 2:
         undo_task()
@@ -73,6 +85,10 @@ Choose an option:
     elif user_input == 6:
         print("Goodbye!")
         break
+
+    elif user_input == 7:
+        clear_all_tasks()
+        print("Task List Cleared")
 
     else:
         print("Invalid option. Try again.")
