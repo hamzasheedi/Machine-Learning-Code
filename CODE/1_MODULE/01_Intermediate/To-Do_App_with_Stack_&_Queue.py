@@ -1,65 +1,78 @@
-task = []
+tasks = []
 
+def add_task(task_name):
+    if task_name in tasks:
+        print(f"\n'{task_name}' already exists in the task list.")
+    else:
+        tasks.append(task_name)
+        print("\nYour task has been added!")
+
+def undo_task():
+    if tasks:
+        removed = tasks.pop()
+        print(f"\nLast task '{removed}' has been undone.")
+    else:
+        print("\nNo tasks to undo.")
+
+def complete_first_task():
+    if tasks:
+        completed = tasks.pop(0)
+        print(f"\nFirst task '{completed}' has been completed.")
+    else:
+        print("\nNo tasks to complete.")
+
+def remove_task(task_name):
+    if task_name in tasks:
+        tasks.remove(task_name)
+        print(f"\nTask '{task_name}' removed.")
+    else:
+        print("\nTask not found.")
+
+def show_tasks():
+    if not tasks:
+        print("\nNo tasks available.")
+    else:
+        print("\nYour Tasks:")
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
 
 while True:
-    # user_input
+    print("""
+Choose an option:
+1. Add Task
+2. Undo Last Task
+3. Complete First Task
+4. Remove Specific Task
+5. Show Tasks
+6. Exit
+""")
 
-    user_input = int(input("\n Enter \n 1 To Add Task"))
-    
-    # if user input is 1 (For Adding Task)
-    
+    try:
+        user_input = int(input("Enter your choice: "))
+    except ValueError:
+        print("Please enter a number.")
+        continue
+
     if user_input == 1:
-        def add_task(task_name):
-            if task_name not in task:
-                task.append(task_name)
-                print("\n Your Task Has Been Added..!")
-                return
-            elif task_name in task:
-                print(f"\n {task_name} already exist in Task List.")
-                return
-        task_name = input("\n Enter Your Task Name: \n")
+        task_name = input("Enter task name: ")
         add_task(task_name)
 
-    # if user input is 2 (For Undo Task)
-
     elif user_input == 2:
-        def undo_task():
-            task.pop(-1)
-            print("\n Your Last Added Task Have Been Removed")
         undo_task()
-    
-    # if user input is 3 (For Complete First Added Task)
 
     elif user_input == 3:
-        def complete_first_task():
-            task.pop(0)
-            print("\n Your First Added Task Have Been Completed and Removed From Task List")
         complete_first_task()
-    
-    # if user input is 4 (For Remove Task)
 
     elif user_input == 4:
-        def remove_task(task_name):
-            if task_name in task:
-                task.remove("task_name")
-                return
-            else:
-                print("task not present")
-        task_name = input("\n Enter Task Name: ")
+        task_name = input("Enter task name to remove: ")
         remove_task(task_name)
-    
 
-    
+    elif user_input == 5:
+        show_tasks()
 
+    elif user_input == 6:
+        print("Goodbye!")
+        break
 
-
-
-    
-
-
-
-# task.append("hello")
-# task.pop(-1)
-# task.pop(1)
-# for items in task:
-#     print(items)
+    else:
+        print("Invalid option. Try again.")
