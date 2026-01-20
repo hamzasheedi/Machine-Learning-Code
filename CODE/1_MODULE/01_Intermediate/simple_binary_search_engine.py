@@ -1,35 +1,53 @@
-# Define a list of items to search from
+# -------------------------------
+# Simple Search Engine Using Binary Search
+# -------------------------------
+
+# Step 1: Define a list of items (could be book titles, names, etc.)
 items = ["Python", "AI", "Data Science", "ML"]
 
-# Sort the list alphabetically (required for binary search to work correctly)
+# Step 2: Sort the list alphabetically
+# Binary search requires a sorted list to work correctly
 items.sort()
+
+# Print the sorted list (optional, for user reference)
 print("Sorted items:", items)
 
-# Take input from the user for the item to search
+# Step 3: Take search input from the user
 search_item = input("Enter the item you want to search: ")
 
-# Initialize binary search pointers
-left = 0                   # Start of the list
-right = len(items) - 1     # End of the list
-found = False              # Flag to track if item is found
+# Step 4: Initialize left and right pointers for binary search
+left = 0                     # Start of the list
+right = len(items) - 1       # End of the list
 
-# Start binary search loop
+# Step 5: Flag to track if item is found
+found = False
+
+# Step 6: Start the binary search loop
+# Loop continues as long as the search range is valid
+# i.e., left index <= right index
 while left <= right:
-    middle = (left + right) // 2  # Find the middle index
-    print(middle)                 # Optional: show current middle index
     
+    # Find the middle index
+    # Integer division is important to get a valid list index
+    middle = (left + right) // 2
+    
+    # Compare middle element with the search item
     if items[middle] == search_item:
-        # Item found at middle index
+        # Item found
         print(f"Item '{search_item}' found at index {middle}")
         found = True
-        break
+        break  # Exit the loop as we found the item
+    
     elif search_item < items[middle]:
-        # Search item is before middle, search left half
+        # If search item comes BEFORE middle element
+        # Update the right pointer to search the left half
         right = middle - 1
+    
     else:
-        # Search item is after middle, search right half
+        # If search item comes AFTER middle element
+        # Update the left pointer to search the right half
         left = middle + 1
 
-# If loop ends and item was not found
+# Step 7: If loop ends and item was not found
 if not found:
     print(f"Item '{search_item}' not found in the list")
