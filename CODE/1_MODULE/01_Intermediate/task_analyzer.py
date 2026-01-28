@@ -9,10 +9,9 @@ frequency = {}
 for word in words:
     if word in frequency:
         frequency[word] += 1
-        unique_words -= 1
         continue
     frequency[word] = 1
-    unique_words += 1
+
 
 # print(frequency)
 
@@ -32,4 +31,4 @@ print(f"Emails found: {emails}")
 print(f"Phone numbers found: {phones}")
 print(f"Total Words: {len(words)}")
 print(f"Common Words: {common_word}")
-print(f"Unique Words: {unique_words}")
+print(f"Unique Words: {len(frequency)}")
